@@ -9,9 +9,19 @@
         body { background-color: ivory; font-family: Arial, sans-serif; padding: 20px; }
         h2 { color: #333; }
         p, ul { color: #555; }
-        .container { max-width: 800px; margin: auto; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
         .nav { text-align: center; padding: 10px 0; }
         .nav a { margin: 0 10px; color: #0066cc; text-decoration: none; }
+        @media (max-width: 1024px) {
+            .container { padding: 15px; }
+            h2 { font-size: 1.5rem; }
+        }
+        @media (max-width: 768px) {
+            .nav { display: flex; flex-wrap: wrap; justify-content: center; }
+            .nav a { display: block; margin: 5px; font-size: 14px; }
+            h2 { font-size: 1.3rem; }
+            p, ul { font-size: 14px; }
+        }
     </style>
 </head>
 <body>
