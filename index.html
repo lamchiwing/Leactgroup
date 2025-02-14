@@ -7,11 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: ivory; font-family: Arial, sans-serif; padding: 20px; }
-        h2 { color: #333; }
-        p, ul { color: #555; }
+        h2 { color: #333; margin-bottom: 15px; }
+        p, ul { color: #555; margin-bottom: 20px; }
         .container { max-width: 1200px; margin: auto; padding: 20px; }
         .nav { text-align: center; padding: 10px 0; }
         .nav a { margin: 0 10px; color: #0066cc; text-decoration: none; }
+        .section { margin-bottom: 40px; }
         @media (max-width: 1024px) {
             .container { padding: 15px; }
             h2 { font-size: 1.5rem; }
@@ -40,13 +41,13 @@
     </header>
 
     <main class="container">
-        <section id="overview">
+        <section id="overview" class="section">
             <h2>服務概述</h2>
             <p>Leact Group 提供企業級的行業趨勢分析、競爭對手動態監測、品牌聲量分析，幫助企業優化其社交媒體策略。</p>
             <p>透過我們的社交聆聽服務，我們協助客戶跟蹤社交媒體上的品牌表現、行業熱點、競爭對手動態，並深入分析這些數據，為企業提供具體的市場洞察和策略建議。</p>
         </section>
 
-        <section id="data">
+        <section id="data" class="section">
             <h2>數據收集與使用</h2>
             <p>我們通過集成 Instagram 和 Facebook 等社交平台的數據，收集有關行業趨勢、社交媒體動態、熱門話題和品牌活動的數據。</p>
             <ul>
@@ -57,32 +58,32 @@
             </ul>
         </section>
 
-        <section id="pricing">
+        <section id="pricing" class="section">
             <h2>收費方案</h2>
             <p>我們提供免費版、標準版（HK$199/月）和企業專屬方案（HK$999/月），滿足不同規模的業務需求。</p>
         </section>
 
-        <section id="tech">
+        <section id="tech" class="section">
             <h2>技術架構</h2>
             <p>我們利用 NLP、數據分析和 AI 技術來預測市場趨勢，並確保數據的準確性和即時性。</p>
         </section>
 
-        <section id="future">
+        <section id="future" class="section">
             <h2>未來發展</h2>
             <p>我們計劃推出 AI 智能報告、行業報告商城和數據 API 整合服務，以幫助企業更深入地了解市場動態和受眾行為。</p>
         </section>
 
-        <section id="privacy">
+        <section id="privacy" class="section">
             <h2>數據隱私</h2>
             <p>我們尊重用戶隱私，並嚴格遵守數據保護法規。我們僅收集為提供服務所需的必要數據，並保證數據的安全性和機密性。</p>
         </section>
 
-        <section id="terms">
+        <section id="terms" class="section">
             <h2>條款與條件</h2>
             <p>使用本網站和服務即表示您同意我們的 <a href="terms-of-service.html">條款與條件</a>。</p>
         </section>
 
-        <section id="data-deletion">
+        <section id="data-deletion" class="section">
             <h2>用戶數據刪除</h2>
             <p>如需刪除您的用戶數據，請點擊以下鏈接並按照說明提交請求：</p>
             <a href="data-deletion.html" class="text-blue-600 underline">點擊這裡刪除您的數據</a>
