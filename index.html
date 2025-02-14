@@ -6,73 +6,81 @@
     <title>Leact Group - Social Listening & Analysis</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: ivory; }
+        body { background-color: ivory; font-family: Arial, sans-serif; padding: 20px; }
+        h2 { color: #333; }
+        p, ul { color: #555; }
+        .container { max-width: 800px; margin: auto; }
+        .nav { text-align: center; padding: 10px 0; }
+        .nav a { margin: 0 10px; color: #0066cc; text-decoration: none; }
     </style>
 </head>
-<body class="text-gray-900">
-    <header class="bg-white shadow-md p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">Leact Group</h1>
-            <nav>
-                <a href="#overview" class="p-2">服務概述</a>
-                <a href="#data" class="p-2">數據收集</a>
-                <a href="#pricing" class="p-2">收費方案</a>
-                <a href="#tech" class="p-2">技術架構</a>
-                <a href="#future" class="p-2">未來發展</a>
-                <a href="#privacy" class="p-2">數據隱私</a>
-                <a href="#terms" class="p-2">條款與條件</a>
-                <a href="terms-of-service.html" class="p-2">服務條款</a>
-                <a href="#data-deletion" class="p-2">用戶數據刪除</a>
-            </nav>
-        </div>
+<body>
+    <header class="nav">
+        <h1>Leact Group</h1>
+        <nav>
+            <a href="#overview">服務概述</a>
+            <a href="#data">數據收集與使用</a>
+            <a href="#pricing">收費方案</a>
+            <a href="#tech">技術架構</a>
+            <a href="#future">未來發展</a>
+            <a href="#privacy">數據隱私</a>
+            <a href="terms-of-service.html">條款與條件</a>
+            <a href="data-deletion.html">用戶數據刪除</a>
+        </nav>
     </header>
 
-    <main class="container mx-auto mt-10">
-        <section id="overview" class="mb-10">
-            <h2 class="text-3xl font-bold">服務概述</h2>
-            <p class="mt-4">Leact Group 提供企業級的行業趨勢分析、競爭對手動態監測、品牌聲量分析，以提升社交媒體策略。</p>
+    <main class="container">
+        <section id="overview">
+            <h2>服務概述</h2>
+            <p>Leact Group 提供企業級的行業趨勢分析、競爭對手動態監測、品牌聲量分析，幫助企業優化其社交媒體策略。</p>
+            <p>透過我們的社交聆聽服務，我們協助客戶跟蹤社交媒體上的品牌表現、行業熱點、競爭對手動態，並深入分析這些數據，為企業提供具體的市場洞察和策略建議。</p>
         </section>
 
-        <section id="data" class="mb-10">
-            <h2 class="text-3xl font-bold">數據收集</h2>
-            <p class="mt-4">我們收集行業趨勢、社交媒體動態與新聞資訊，幫助企業了解市場變化。</p>
+        <section id="data">
+            <h2>數據收集與使用</h2>
+            <p>我們通過集成 Instagram 和 Facebook 等社交平台的數據，收集有關行業趨勢、社交媒體動態、熱門話題和品牌活動的數據。</p>
+            <ul>
+                <li><b>行業趨勢：</b> 關於社交媒體上的熱門話題和趨勢。</li>
+                <li><b>競爭對手動態：</b> 監控競爭品牌在社交媒體上的活動和表現。</li>
+                <li><b>品牌聲量：</b> 分析客戶品牌在社交媒體上的聲量，並提供增長建議。</li>
+                <li><b>用戶互動數據：</b> 如留言、點贊、分享等，幫助企業理解其受眾行為。</li>
+            </ul>
         </section>
 
-        <section id="pricing" class="mb-10">
-            <h2 class="text-3xl font-bold">收費方案</h2>
-            <p class="mt-4">我們提供免費版、標準版（HK$199/月）和企業專屬方案（HK$999/月），滿足不同需求。</p>
+        <section id="pricing">
+            <h2>收費方案</h2>
+            <p>我們提供免費版、標準版（HK$199/月）和企業專屬方案（HK$999/月），滿足不同規模的業務需求。</p>
         </section>
 
-        <section id="tech" class="mb-10">
-            <h2 class="text-3xl font-bold">技術架構</h2>
-            <p class="mt-4">我們使用 NLP、數據分析和 AI 預測市場趨勢，確保高準確率與即時性。</p>
+        <section id="tech">
+            <h2>技術架構</h2>
+            <p>我們利用 NLP、數據分析和 AI 技術來預測市場趨勢，並確保數據的準確性和即時性。</p>
         </section>
 
-        <section id="future" class="mb-10">
-            <h2 class="text-3xl font-bold">未來發展</h2>
-            <p class="mt-4">未來，我們將推出 AI 智能報告、行業報告商城和數據 API 整合，以提供更強大的數據服務。</p>
+        <section id="future">
+            <h2>未來發展</h2>
+            <p>我們計劃推出 AI 智能報告、行業報告商城和數據 API 整合服務，以幫助企業更深入地了解市場動態和受眾行為。</p>
         </section>
 
-        <section id="privacy" class="mb-10">
-            <h2 class="text-3xl font-bold">數據隱私</h2>
-            <p class="mt-4">我們尊重用戶隱私，並遵守數據保護法規。我們僅收集必要數據，確保其安全性。</p>
+        <section id="privacy">
+            <h2>數據隱私</h2>
+            <p>我們尊重用戶隱私，並嚴格遵守數據保護法規。我們僅收集為提供服務所需的必要數據，並保證數據的安全性和機密性。</p>
         </section>
 
-        <section id="terms" class="mb-10">
-            <h2 class="text-3xl font-bold">條款與條件</h2>
-            <p class="mt-4">使用本網站和服務即表示您同意我們的條款與條件。</p>
-            <a href="terms-of-service.html" class="text-blue-600 underline">查看完整的服務條款</a>
+        <section id="terms">
+            <h2>條款與條件</h2>
+            <p>使用本網站和服務即表示您同意我們的 <a href="terms-of-service.html">條款與條件</a>。</p>
         </section>
 
-        <section id="data-deletion" class="mb-10">
-            <h2 class="text-3xl font-bold">用戶數據刪除</h2>
-            <p class="mt-4">如需刪除您的用戶數據，請點擊以下鏈接並按照說明提交請求：</p>
-            <a href="https://www.leactgroup.com/data-deletion" class="text-blue-600 underline">點擊這裡刪除您的數據</a>
+        <section id="data-deletion">
+            <h2>用戶數據刪除</h2>
+            <p>如需刪除您的用戶數據，請點擊以下鏈接並按照說明提交請求：</p>
+            <a href="data-deletion.html" class="text-blue-600 underline">點擊這裡刪除您的數據</a>
         </section>
     </main>
 
-    <footer class="bg-gray-900 text-white p-4 text-center mt-10">
-        © 2025 Leact Group - All Rights Reserved.
+    <footer class="nav">
+        <p>© 2025 Leact Group - All Rights Reserved.</p>
     </footer>
 </body>
 </html>
