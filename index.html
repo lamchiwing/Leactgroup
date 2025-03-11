@@ -29,10 +29,11 @@
             margin-top: 20px;
             line-height: 2;
             animation: gradientShift 3s infinite alternate;
+            background-size: 200% 200%;
         }
         @keyframes gradientShift {
-            0% { background: linear-gradient(45deg, black, white); }
-            100% { background: linear-gradient(45deg, white, black); }
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
         .info {
             font-size: 12pt;
