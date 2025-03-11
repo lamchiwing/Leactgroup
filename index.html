@@ -18,8 +18,8 @@
         }
         .logo {
             width: auto;
-            height: 100px;
-            margin-bottom: 20px; /* 與 .business 間隔 20px */
+            height: 60px;
+            margin-bottom: 20px;
         }
         .business {
             font-size: 12pt;
@@ -37,49 +37,50 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
             text-fill-color: transparent;
-            border-right: 2px solid #000000; /* 黃色分隔線 */
+            border-right: 2px solid #F7EB39;
             animation: gradientMove 3s infinite linear;
-            background-size: 200% 200%; /* 讓漸變色有空間變化 */
+            background-size: 200% 200%;
         }
         .business div:last-child {
-            border-right: none; /* 移除最後一個的分隔線 */
+            border-right: none;
         }
-
-        /* 文字漸變動畫 */
         @keyframes gradientMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        /* 文字獨立漸變 */
-        .data-analysis {
-            background-image: linear-gradient(13deg, #FF17B6, #FF52B6);
-        }
-        .predictive-analytics {
-            background-image: linear-gradient(45deg, #FF17B6, #FF52B6);
-        }
-        .automation-engineer {
-            background-image: linear-gradient(20deg, #FF17B6, #FF52B6);
-        }
-        .social-listening {
-            background-image: linear-gradient(30deg, #FF17B6, #FF52B6);
-        }
-        .strategy-development {
-            background-image: linear-gradient(9deg, #FF17B6, #FF52B6);
-        }
-
+        .data-analysis { background-image: linear-gradient(13deg, #FF17B6, #FF52B6); }
+        .predictive-analytics { background-image: linear-gradient(45deg, #FF17B6, #FF52B6); }
+        .automation-engineer { background-image: linear-gradient(20deg, #FF17B6, #FF52B6); }
+        .social-listening { background-image: linear-gradient(30deg, #FF17B6, #FF52B6); }
+        .strategy-development { background-image: linear-gradient(9deg, #FF17B6, #FF52B6); }
         .info {
             font-size: 12pt;
             color: black;
             margin-top: 50px;
         }
-        .email {
-            font-size: 12pt;
+        .contact {
+            font-size: 14pt;
+            font-weight: bold;
             color: black;
             margin-top: 20px;
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .contact:hover {
+            background: black;
+            color: white;
         }
     </style>
+    <script>
+        function openForm() {
+            window.open("https://forms.gle/pd2ZArS3tXwP2mQx7", "_blank", "width=600,height=800");
+        }
+    </script>
 </head>
 <body>
     <img src="Site_Black Logo.png" alt="Logo" class="logo">
@@ -91,6 +92,6 @@
         <div class="strategy-development">Strategy Development</div>
     </div>
     <div class="info">Hong Kong | Sweden</div>
-    <div class="email">info@leactgroup.com</div>
+    <div class="contact" onclick="openForm()">📞 Contact Us</div>
 </body>
 </html>
