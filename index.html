@@ -1,97 +1,57 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leact Group - Social Listening & Analysis</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Landing Page</title>
     <style>
-        body { background-color: ivory; font-family: Arial, sans-serif; padding: 20px; }
-        h2 { color: #333; margin-bottom: 15px; }
-        p, ul { color: #555; margin-bottom: 20px; }
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
-        .nav { text-align: center; padding: 10px 0; }
-        .nav a { margin: 0 10px; color: #0066cc; text-decoration: none; }
-        .section { margin-bottom: 40px; }
-        @media (max-width: 1024px) {
-            .container { padding: 15px; }
-            h2 { font-size: 1.5rem; }
+        body {
+            background-color: #F7B52D;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: 'DIN', sans-serif;
+            margin: 0;
         }
-        @media (max-width: 768px) {
-            .nav { display: flex; flex-wrap: wrap; justify-content: center; }
-            .nav a { display: block; margin: 5px; font-size: 14px; }
-            h2 { font-size: 1.3rem; }
-            p, ul { font-size: 14px; }
+        .logo {
+            width: 150px;
+            height: auto;
+        }
+        .business {
+            font-size: 12pt;
+            font-weight: bold;
+            background: linear-gradient(45deg, black, white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 20px;
+            line-height: 2;
+            animation: gradientShift 3s infinite alternate;
+        }
+        @keyframes gradientShift {
+            0% { background: linear-gradient(45deg, black, white); }
+            100% { background: linear-gradient(45deg, white, black); }
+        }
+        .info {
+            font-size: 12pt;
+            color: black;
+            margin-top: 50px;
+        }
+        .email {
+            font-size: 12pt;
+            color: black;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <header class="nav">
-        <h1>Leact Group</h1>
-        <nav>
-            <a href="#overview">服務概述</a>
-            <a href="#data">數據收集與使用</a>
-            <a href="#pricing">收費方案</a>
-            <a href="#tech">技術架構</a>
-            <a href="#future">未來發展</a>
-            <a href="#privacy">數據隱私</a>
-            <a href="terms-of-service.html">條款與條件</a>
-            <a href="data-deletion.html">用戶數據刪除</a>
-        </nav>
-    </header>
-
-    <main class="container">
-        <section id="overview" class="section">
-            <h2>服務概述</h2>
-            <p>Leact Group 提供企業級的行業趨勢分析、競爭對手動態監測、品牌聲量分析，幫助企業優化其社交媒體策略。</p>
-            <p>透過我們的社交聆聽服務，我們協助客戶跟蹤社交媒體上的品牌表現、行業熱點、競爭對手動態，並深入分析這些數據，為企業提供具體的市場洞察和策略建議。</p>
-        </section>
-
-        <section id="data" class="section">
-            <h2>數據收集與使用</h2>
-            <p>我們通過集成 Instagram 和 Facebook 等社交平台的數據，收集有關行業趨勢、社交媒體動態、熱門話題和品牌活動的數據。</p>
-            <ul>
-                <li><b>行業趨勢：</b> 關於社交媒體上的熱門話題和趨勢。</li>
-                <li><b>競爭對手動態：</b> 監控競爭品牌在社交媒體上的活動和表現。</li>
-                <li><b>品牌聲量：</b> 分析客戶品牌在社交媒體上的聲量，並提供增長建議。</li>
-                <li><b>用戶互動數據：</b> 如留言、點贊、分享等，幫助企業理解其受眾行為。</li>
-            </ul>
-        </section>
-
-        <section id="pricing" class="section">
-            <h2>收費方案</h2>
-            <p>我們提供免費版、標準版（HK$199/月）和企業專屬方案（HK$999/月），滿足不同規模的業務需求。</p>
-        </section>
-
-        <section id="tech" class="section">
-            <h2>技術架構</h2>
-            <p>我們利用 NLP、數據分析和 AI 技術來預測市場趨勢，並確保數據的準確性和即時性。</p>
-        </section>
-
-        <section id="future" class="section">
-            <h2>未來發展</h2>
-            <p>我們計劃推出 AI 智能報告、行業報告商城和數據 API 整合服務，以幫助企業更深入地了解市場動態和受眾行為。</p>
-        </section>
-
-        <section id="privacy" class="section">
-            <h2>數據隱私</h2>
-            <p>我們尊重用戶隱私，並嚴格遵守數據保護法規。我們僅收集為提供服務所需的必要數據，並保證數據的安全性和機密性。</p>
-        </section>
-
-        <section id="terms" class="section">
-            <h2>條款與條件</h2>
-            <p>使用本網站和服務即表示您同意我們的 <a href="terms-of-service.html">條款與條件</a>。</p>
-        </section>
-
-        <section id="data-deletion" class="section">
-            <h2>用戶數據刪除</h2>
-            <p>如需刪除您的用戶數據，請點擊以下鏈接並按照說明提交請求：</p>
-            <a href="data-deletion.html" class="text-blue-600 underline">點擊這裡刪除您的數據</a>
-        </section>
-    </main>
-
-    <footer class="nav">
-        <p>© 2025 Leact Group - All Rights Reserved.</p>
-    </footer>
+    <img src="Site_Black Logo.png" alt="Logo" class="logo">
+    <div class="business">
+        Data Analysis, Predictive Analytics, Automation Engineer, Social Listening, Strategy Development
+    </div>
+    <div class="info">Hong Kong | Sweden</div>
+    <div class="email">info@leactgroup.com</div>
 </body>
 </html>
