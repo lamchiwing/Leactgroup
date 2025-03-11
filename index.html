@@ -23,17 +23,30 @@
         .business {
             font-size: 12pt;
             font-weight: bold;
-            background: linear-gradient(45deg, black, white);
+            display: flex;
+            flex-direction: column;
+            gap: 5px; /* 每組 business 相隔 5px */
+            margin-top: 20px;
+        }
+        .business div {
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-top: 20px;
-            line-height: 2;
-            animation: gradientShift 3s infinite alternate;
-            background-size: 200% 200%;
+            font-weight: bold;
         }
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
+        .business .data-analysis {
+            background: linear-gradient(13deg, #FF17B6, #FF52B6);
+        }
+        .business .predictive-analytics {
+            background: linear-gradient(45deg, #FF17B6, #FF52B6);
+        }
+        .business .automation-engineer {
+            background: linear-gradient(20deg, #FF17B6, #FF52B6);
+        }
+        .business .social-listening {
+            background: linear-gradient(30deg, #FF17B6, #FF52B6);
+        }
+        .business .strategy-development {
+            background: linear-gradient(9deg, #FF17B6, #FF52B6);
         }
         .info {
             font-size: 12pt;
@@ -50,7 +63,11 @@
 <body>
     <img src="Site_Black Logo.png" alt="Logo" class="logo">
     <div class="business">
-        Data Analysis, Predictive Analytics, Automation Engineer, Social Listening, Strategy Development
+        <div class="data-analysis">Data Analysis</div>
+        <div class="predictive-analytics">Predictive Analytics</div>
+        <div class="automation-engineer">Automation Engineer</div>
+        <div class="social-listening">Social Listening</div>
+        <div class="strategy-development">Strategy Development</div>
     </div>
     <div class="info">Hong Kong | Sweden</div>
     <div class="email">info@leactgroup.com</div>
