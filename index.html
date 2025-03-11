@@ -25,28 +25,31 @@
             font-weight: bold;
             display: flex;
             flex-direction: column;
-            gap: 5px; /* 每組 business 相隔 5px */
+            gap: 5px;
             margin-top: 20px;
         }
         .business div {
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             font-weight: bold;
+            display: inline-block;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
         }
-        .business .data-analysis {
-            background: linear-gradient(13deg, #FF17B6, #FF52B6);
+        .data-analysis {
+            background-image: linear-gradient(13deg, #FF17B6, #FF52B6);
         }
-        .business .predictive-analytics {
-            background: linear-gradient(45deg, #FF17B6, #FF52B6);
+        .predictive-analytics {
+            background-image: linear-gradient(45deg, #FF17B6, #FF52B6);
         }
-        .business .automation-engineer {
-            background: linear-gradient(20deg, #FF17B6, #FF52B6);
+        .automation-engineer {
+            background-image: linear-gradient(20deg, #FF17B6, #FF52B6);
         }
-        .business .social-listening {
-            background: linear-gradient(30deg, #FF17B6, #FF52B6);
+        .social-listening {
+            background-image: linear-gradient(30deg, #FF17B6, #FF52B6);
         }
-        .business .strategy-development {
-            background: linear-gradient(9deg, #FF17B6, #FF52B6);
+        .strategy-development {
+            background-image: linear-gradient(9deg, #FF17B6, #FF52B6);
         }
         .info {
             font-size: 12pt;
