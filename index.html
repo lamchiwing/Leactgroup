@@ -6,7 +6,7 @@
     <title>Leact</title>
     <style>
         body {
-            background-color: #F7B52D;
+            background: linear-gradient(30deg, #DAE61A 50%, #F2B702 50%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -17,16 +17,17 @@
             margin: 0;
         }
         .logo {
-            width:auto;
-            height:60;
-        }<img src="https://raw.githubusercontent.com/alison@leactgroup.com/repo/main/images/Site_Black Logo.png" alt="leact">
+            width: auto;
+            height: 60px;
+            margin-bottom: 20px; /* 與 .business 間隔 20px */
+        }
         .business {
             font-size: 12pt;
             font-weight: bold;
             display: flex;
             align-items: center;
             gap: 5px;
-            margin-top: 20px;
+            margin-top: 0;
         }
         .business div {
             font-weight: bold;
@@ -37,10 +38,13 @@
             -webkit-text-fill-color: transparent;
             text-fill-color: transparent;
             border-right: 2px solid #F7EB39; /* 黃色分隔線 */
+            animation: gradientMove 3s infinite alternate;
         }
         .business div:last-child {
             border-right: none; /* 移除最後一個的分隔線 */
         }
+
+        /* 文字獨立漸變 */
         .data-analysis {
             background-image: linear-gradient(13deg, #FF17B6, #FF52B6);
         }
@@ -56,6 +60,13 @@
         .strategy-development {
             background-image: linear-gradient(9deg, #FF17B6, #FF52B6);
         }
+
+        /* 文字漸變動畫 */
+        @keyframes gradientMove {
+            0% { opacity: 0.7; transform: translateY(0px); }
+            100% { opacity: 1; transform: translateY(-3px); }
+        }
+
         .info {
             font-size: 12pt;
             color: black;
