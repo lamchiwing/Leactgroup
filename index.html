@@ -1,97 +1,140 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leact</title>
-    <style>
-        body {
-            background: linear-gradient(-30deg, #ffdd3c 50%, #ffd400 50%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            font-family: 'DIN', sans-serif;
-            margin: 0;
-        }
-        .logo {
-            width: auto;
-            height: 100px;
-            margin-bottom: 20px;
-        }
-        .business {
-            font-size: 12pt;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 0;
-        }
-        .business div {
-            font-weight: bold;
-            padding: 5px 10px;
-            display: inline-block;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-fill-color: transparent;
-            border-right: 2px solid #F7EB39;
-            animation: gradientMove 3s infinite linear;
-            background-size: 200% 200%;
-        }
-        .business div:last-child {
-            border-right: none;
-        }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .data-analysis { background-image: linear-gradient(13deg, #FF17B6, #FF52B6); }
-        .predictive-analytics { background-image: linear-gradient(45deg, #FF17B6, #FF52B6); }
-        .automation-architecture { background-image: linear-gradient(20deg, #FF17B6, #FF52B6); }
-        .social-listening { background-image: linear-gradient(30deg, #FF17B6, #FF52B6); }
-        .strategy-development { background-image: linear-gradient(9deg, #FF17B6, #FF52B6); }
-        .info {
-            font-size: 12pt;
-            color: black;
-            margin-top: 50px;
-        }
-        .contact {
-            font-size: 14pt;
-            font-weight: bold;
-            color: black;
-            margin-top: 20px;
-            cursor: pointer;
-            display: inline-block;
-            padding: 10px;
-            border: 2px solid black;
-            border-radius: 8px;
-            transition: background 0.3s, color 0.3s;
-        }
-        .contact:hover {
-            background: black;
-            color: white;
-        }
-    </style>
-    <script>
-        function openForm() {
-            window.open("https://forms.gle/pd2ZArS3tXwP2mQx7", "_blank", "width=600,height=800");
-        }
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leact</title>
+
+  <style>
+    body {
+      background: linear-gradient(-30deg, #ffdd3c 50%, #ffd400 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      font-family: "DIN", sans-serif;
+      margin: 0;
+    }
+    .logo {
+      width: auto;
+      height: 100px;
+      margin-bottom: 20px;
+    }
+    .business {
+      font-size: 12pt;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 12px;
+    }
+    .business div {
+      font-weight: bold;
+      padding: 6px 10px;
+      display: inline-block;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
+      border-right: 2px solid #F7EB39;
+      animation: gradientMove 3s infinite linear;
+      background-size: 200% 200%;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .business div:last-child {
+      border-right: none;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* service labels */
+    .data-analysis { background-image: linear-gradient(13deg, #FF17B6, #FF52B6); }
+    .predictive-analytics { background-image: linear-gradient(45deg, #FF17B6, #FF52B6); }
+    /* per briefing: Automation Architecture -> Automation Systems */
+    .automation-systems { background-image: linear-gradient(20deg, #FF17B6, #FF52B6); }
+    .social-listening { background-image: linear-gradient(30deg, #FF17B6, #FF52B6); }
+    /* per briefing: Strategy Development -> Growth Strategy */
+    .growth-strategy { background-image: linear-gradient(9deg, #FF17B6, #FF52B6); }
+
+    .info {
+      font-size: 12pt;
+      color: black;
+      margin-top: 50px;
+    }
+    .contact {
+      font-size: 14pt;
+      font-weight: bold;
+      color: black;
+      margin-top: 20px;
+      cursor: pointer;
+      display: inline-block;
+      padding: 10px 14px;
+      border: 2px solid black;
+      border-radius: 8px;
+      transition: background 0.3s, color 0.3s;
+      user-select: none;
+    }
+    .contact:hover {
+      background: black;
+      color: white;
+    }
+
+    /* optional: small helper text under button */
+    .hint {
+      margin-top: 10px;
+      font-size: 10.5pt;
+      color: rgba(0,0,0,0.75);
+      max-width: 560px;
+      padding: 0 14px;
+    }
+  </style>
+
+  <script>
+    /**
+     * Revised: open your Apps Script Web App form (recommended)
+     * - Put the Web App URL into Render env and inject it at build time if you have a build step.
+     * - If you don't have build-time env injection, set WEB_APP_URL here (temporary).
+     *
+     * Option A (recommended): Use Render proxy URL (e.g. https://your-render-app.onrender.com/form)
+     * Option B: Use Apps Script Web App URL directly (https://script.google.com/macros/s/.../exec)
+     */
+    const WEB_APP_URL = "REPLACE_WITH_YOUR_WEB_APP_URL"; // e.g. https://script.google.com/macros/s/XXXX/exec
+
+    function openForm() {
+      if (!WEB_APP_URL || WEB_APP_URL.includes("REPLACE_WITH")) {
+        alert("Contact form is not configured yet. Please set WEB_APP_URL.");
+        return;
+      }
+      window.open(WEB_APP_URL, "_blank", "width=600,height=800");
+    }
+  </script>
 </head>
+
 <body>
-    <img src="Site_Black Logo.png" alt="Logo" class="logo">
-    <div class="business">
-        <div class="data-analysis">Data Analysis</div>
-        <div class="predictive-analytics">Predictive Analytics</div>
-        <div class="automation-architecture">Automation Architecture</div>
-        <div class="social-listening">Social Listening</div>
-        <div class="strategy-development">Strategy Development</div>
-    </div>
-    <div class="info">Hong Kong | Sweden</div>
-    <div class="contact" onclick="openForm()">📞 Contact Us</div>
+  <img src="Site_Black Logo.png" alt="Logo" class="logo" />
+
+  <div class="business">
+    <div class="data-analysis">Data Analysis</div>
+    <div class="predictive-analytics">Predictive Analytics</div>
+    <div class="automation-systems">Automation Systems</div>
+    <div class="social-listening">Social Listening</div>
+    <div class="growth-strategy">Growth Strategy</div>
+  </div>
+
+  <div class="info">Hong Kong | Sweden</div>
+
+  <div class="contact" onclick="openForm()">📞 Contact Us</div>
+  <div class="hint">
+    (Demo) Your submission will trigger automated routing and notifications.
+  </div>
 </body>
 </html>
