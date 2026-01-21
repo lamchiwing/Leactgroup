@@ -132,9 +132,16 @@
 
   <div class="info">Hong Kong | Sweden</div>
 
-  <div class="contact" onclick="openForm()">📞 Contact Us</div>
-  <div class="hint">
-    (Demo) Your submission will trigger automated routing and notifications.
-  </div>
-</body>
-</html>
+<div class="contact" onclick="openForm()">📞 Contact Us</div>
+
+<div class="hint">
+  (Demo) Your submission will trigger automated routing and notifications.
+</div>
+
+<script>
+  function openForm() {
+    const url =
+      "https://script.google.com/macros/s/AKfycbxVPmvqZ8vZzLpVF9ZWx6lS7wTe1s-N_RU_S20BD-anAPu7FsS7x24FullFZrKQcWBABQ/exec";
+    window.open(url, "_blank", "noopener,noreferrer,width=600,height=800");
+  }
+</script>
