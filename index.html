@@ -1,265 +1,592 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LEACT</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEACT</title>
 
-<style>
-/* ==== brand ==== */
-:root{
-  --bg1:#FF17B6;
-  --bg2:#FF52B6;
-  --headline1:#F2B702;
-  --headline2:#DAE61A;
-  --text:#000;
-  --card:#F7DFF0;
-  --btn:#000;
-  --ai:#E0B536;
-  --radius:26px;
-  --shadow:0 18px 45px rgba(0,0,0,.25);
-}
+  <style>
+    :root{
+      --bg1:#FF17B6;
+      --bg2:#FF52B6;
 
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  font-family:"DIN",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:linear-gradient(180deg,var(--bg2),var(--bg1));
-  color:var(--text);
-}
+      --headline1:#F2B702; /* 黃 */
+      --headline2:#DAE61A; /* 黃綠光 */
 
-/* ==== top bar ==== */
-.topbar{
-  position:sticky; top:0; z-index:10;
-  backdrop-filter:blur(10px);
-  background:rgba(255,82,182,.7);
-  border-bottom:1px solid rgba(0,0,0,.1);
-}
-.topbar-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:14px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.brand img{height:34px;}
-.brand span{
-  font-weight:900;
-  font-size:18px;
-}
+      --text:#000;
+      --cardGlass: rgba(255,255,255,.35);
+      --cardInner: rgba(255,255,255,.55);
 
-.nav{
-  display:flex;
-  gap:24px;
-  font-weight:800;
-  letter-spacing:1.5px;
-}
-.nav span{cursor:pointer;}
+      --btn:#000;
+      --btnText:#fff;
 
-.lang{
-  display:flex;
-  gap:8px;
-}
-.lang button{
-  border:0;
-  background:#000;
-  color:#fff;
-  padding:6px 10px;
-  border-radius:6px;
-  font-weight:800;
-  cursor:pointer;
-}
+      --ai:#E0B536;
 
-/* ==== layout ==== */
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:28px 18px 80px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:26px;
-}
+      --radiusXL: 28px;
+      --radiusL: 20px;
 
-.card{
-  background:rgba(255,255,255,.35);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:20px;
-}
-.card-inner{
-  background:rgba(255,255,255,.5);
-  border-radius:20px;
-  padding:22px;
-  min-height:320px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-h2{
-  margin:0 0 10px;
-  font-size:26px;
-  font-weight:950;
-  background:linear-gradient(180deg,var(--headline1),var(--headline2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-p{font-weight:700;}
-ul{padding-left:18px;font-weight:650;}
-button.cta{
-  margin-top:14px;
-  background:var(--btn);
-  color:#fff;
-  border:0;
-  padding:14px;
-  border-radius:14px;
-  font-weight:900;
-  cursor:pointer;
-}
+      --shadowSoft: 0 10px 28px rgba(0,0,0,.18);
+      --shadow: 0 18px 45px rgba(0,0,0,.25);
+    }
 
-/* AI card */
-.ai{
-  background:var(--ai);
-  border-radius:var(--radius);
-  padding:30px;
-  text-align:center;
-  outline:4px dashed #000;
-  outline-offset:-10px;
-}
-.ai h1{
-  font-size:52px;
-  margin:0 0 12px;
-}
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:"DIN",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg1) 60%, var(--bg2) 100%);
+      min-height:100vh;
+    }
 
-@media(max-width:900px){
-  .grid{grid-template-columns:1fr;}
-  .nav{display:none;}
-}
-</style>
+    /* ===== Top bar ===== */
+    .topbarWrap{
+      position: sticky;
+      top:0;
+      z-index:100;
+      padding: 14px 18px;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(255,82,182,.78), rgba(255,23,182,.38));
+      border-bottom: 1px solid rgba(0,0,0,.10);
+    }
+
+    .topbar{
+      max-width: 1200px;
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 160px;
+    }
+
+    /* ✅ 改成 LEACT 粗體黃色字 */
+    .brandText{
+      font-weight: 1000;
+      font-size: 22px;
+      letter-spacing: 1px;
+      background: linear-gradient(180deg, var(--headline1), var(--headline2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    nav{
+      flex: 1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap: 26px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#000;
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 13px;
+      opacity: .95;
+    }
+    nav a:hover{opacity: 1; text-decoration: underline;}
+
+    .right{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      justify-content:flex-end;
+      min-width: 220px;
+    }
+
+    .lang{
+      display:flex;
+      gap: 6px;
+    }
+    .lang button{
+      border: 0;
+      background: #000;
+      color:#fff;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-weight: 900;
+      cursor:pointer;
+      font-size: 12px;
+    }
+    .lang button.active{
+      filter: brightness(1.25);
+      outline: 2px solid rgba(255,255,255,.6);
+      outline-offset: 2px;
+    }
+
+    .ctaTop{
+      background: linear-gradient(180deg, #F3D24A, #E1B71D);
+      border:0;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-weight: 1000;
+      cursor:pointer;
+      box-shadow: 0 10px 26px rgba(0,0,0,.18);
+      white-space: nowrap;
+    }
+
+    /* ===== Layout ===== */
+    .container{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 26px 18px 90px;
+    }
+
+    .pageTitle{
+      text-align:center;
+      font-weight: 950;
+      letter-spacing:.8px;
+      margin: 8px 0 18px;
+      opacity:.88;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .card{
+      background: var(--cardGlass);
+      border-radius: var(--radiusXL);
+      padding: 18px;
+      box-shadow: var(--shadowSoft);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    .cardInner{
+      background: linear-gradient(180deg, rgba(255,255,255,.60), rgba(255,255,255,.30));
+      border-radius: calc(var(--radiusXL) - 6px);
+      padding: 22px 22px 18px;
+      min-height: 340px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .cardHead{
+      display:flex;
+      align-items:flex-start;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .icon{
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(0,0,0,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 22px;
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+
+    .h2{
+      margin: 4px 0 8px;
+      font-size: 26px;
+      line-height: 1.08;
+      font-weight: 1000;
+      background: linear-gradient(180deg, var(--headline1), var(--headline2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sub{
+      margin: 0 0 14px;
+      font-size: 14px;
+      font-weight: 800;
+      opacity: .92;
+    }
+
+    .list{
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+    .list li{margin: 6px 0;}
+
+    .cardBtn{
+      margin-top: 16px;
+      background: var(--btn);
+      color: var(--btnText);
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 14px;
+      font-weight: 1000;
+      cursor:pointer;
+      width: 100%;
+    }
+
+    /* AI card dashed */
+    .aiCard{
+      background: rgba(0,0,0,0);
+      border-radius: var(--radiusXL);
+      padding: 18px;
+      box-shadow: var(--shadowSoft);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+
+    .aiInner{
+      background: var(--ai);
+      border-radius: calc(var(--radiusXL) - 6px);
+      padding: 22px;
+      min-height: 340px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      text-align:center;
+      outline: 4px dashed rgba(0,0,0,.72);
+      outline-offset: -10px;
+    }
+
+    .aiTitle{
+      font-size: 52px;
+      font-weight: 1000;
+      margin: 0 0 10px;
+      letter-spacing: 1px;
+    }
+
+    .aiText{
+      margin: 0 auto 18px;
+      max-width: 320px;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .aiBtn{
+      display:inline-block;
+      margin: 0 auto;
+      background: #000;
+      color: #fff;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: 1000;
+      cursor:pointer;
+      min-width: 120px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .grid{grid-template-columns: repeat(2, minmax(0,1fr));}
+      nav{display:none;}
+      .right{min-width:auto;}
+    }
+    @media (max-width: 640px){
+      .grid{grid-template-columns: 1fr;}
+      .cardInner,.aiInner{min-height:auto;}
+    }
+  </style>
+
+  <script>
+    // ✅ 只留一份 openForm()
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxVPmvqZ8vZzLpVF9ZWx6lS7wTe1s-N_RU_S20BD-anAPu7FsS7x24FullFZrKQcWBABQ/exec";
+
+    function openForm() {
+      if (!WEB_APP_URL || WEB_APP_URL.includes("REPLACE_WITH")) {
+        alert("Contact form is not configured yet. Please set WEB_APP_URL.");
+        return;
+      }
+      window.open(WEB_APP_URL, "_blank", "noopener,noreferrer,width=600,height=800");
+    }
+
+    // ===== i18n =====
+    const i18n = {
+      zh: {
+        pageTitle: "KACH & Partner Automation",
+        tools: "TOOLS",
+        consultant: "CONSULTANT",
+        pricing: "PRICING",
+        getStarted: "Get Started",
+
+        monthly: "每月租用詳情",
+        consultNow: "即刻諮詢",
+
+        c1_title: "Lead Intake & Routing",
+        c1_desc: "所有查詢集中一個入口，自動分類派發。",
+        c1_1: "集中全平台查詢入口",
+        c1_2: "智能自動分類",
+        c1_3: "精準派位予合適團隊",
+        c1_4: "確保零漏單、极速回覆",
+
+        c2_title: "Internal Ops Automation",
+        c2_desc: "行政流程自動化，減少重覆人手。",
+        c2_1: "自動化重覆行政流程",
+        c2_2: "大幅減少人為錯誤",
+        c2_3: "節省 40% 以上行政工時",
+        c2_4: "標準化內部協作",
+
+        c3_title: "Customer Support Automation",
+        c3_desc: "用流程處理常見客服，保持穩定回覆。",
+        c3_1: "7x24 自動處理常見問題",
+        c3_2: "減少 60% 真人對話量",
+        c3_3: "保持 100% 統一回覆口徑",
+        c3_4: "無縫對接人工客服升級",
+
+        c4_title: "Reporting & Monitoring",
+        c4_desc: "營運數據自動整理，異常即時提醒。",
+        c4_1: "數據自動同步與整合",
+        c4_2: "視覺化即時儀表板",
+        c4_3: "異常狀態即時 Alert",
+        c4_4: "平日無憂，有事必應",
+
+        c5_title: "Compliance / Guardrails",
+        c5_desc: "系統強制流程，保留完整紀錄。",
+        c5_1: "系統級強制流程守則",
+        c5_2: "防止人為疏忽操作",
+        c5_3: "完整審核紀錄保留",
+        c5_4: "自動生成合規報表",
+
+        ai_text: "唔知邊款岩你？話比我哋聽，AI 專家即刻為你推薦最合適方案。"
+      },
+
+      sv: {
+        pageTitle: "KACH & Partner Automation",
+        tools: "VERKTYG",
+        consultant: "KONSULT",
+        pricing: "PRISER",
+        getStarted: "Get Started",
+
+        monthly: "Månadspris",
+        consultNow: "Kontakta oss",
+
+        c1_title: "Lead Intake & Routing",
+        c1_desc: "Samla alla förfrågningar i en ingång och routa automatiskt.",
+        c1_1: "En central ingång",
+        c1_2: "Automatisk klassificering",
+        c1_3: "Rätt team direkt",
+        c1_4: "Inga förlorade leads",
+
+        c2_title: "Intern Processautomation",
+        c2_desc: "Automatisera administrativa flöden och minska manuellt arbete.",
+        c2_1: "Automatisera repetitiva flöden",
+        c2_2: "Minska mänskliga fel",
+        c2_3: "Spara tid och kostnader",
+        c2_4: "Standardisera samarbete",
+
+        c3_title: "Kundsupport-automation",
+        c3_desc: "Hantera vanliga frågor med stabila svar och eskalering vid behov.",
+        c3_1: "24/7 hantering av FAQ",
+        c3_2: "Minska behovet av manuella svar",
+        c3_3: "Enhetlig svarston",
+        c3_4: "Sömlös överlämning till människa",
+
+        c4_title: "Rapportering & Övervakning",
+        c4_desc: "Automatisera uppföljning av drift och få larm vid avvikelser.",
+        c4_1: "Datainsamling och synk",
+        c4_2: "Dashboard i realtid",
+        c4_3: "Larm vid avvikelse",
+        c4_4: "Trygg drift, snabb respons",
+
+        c5_title: "Compliance / Guardrails",
+        c5_desc: "Tvinga processer, logga allt och säkra spårbarhet.",
+        c5_1: "Regelstyrda flöden",
+        c5_2: "Förhindra felsteg",
+        c5_3: "Fullständig loggning",
+        c5_4: "Automatiska compliance-rapporter",
+
+        ai_text: "Osäker på vilken lösning som passar? Prata med vår AI-expert så rekommenderar vi rätt upplägg."
+      }
+    };
+
+    function setLang(lang){
+      const dict = i18n[lang] || i18n.zh;
+
+      // set html lang
+      document.documentElement.lang = (lang === "sv") ? "sv" : "zh-Hant";
+
+      // update texts
+      document.querySelectorAll("[data-key]").forEach(el=>{
+        const k = el.getAttribute("data-key");
+        if (dict[k] !== undefined) el.textContent = dict[k];
+      });
+
+      // active button
+      document.querySelectorAll(".lang button").forEach(b=>b.classList.remove("active"));
+      const btn = document.querySelector(`.lang button[data-lang="${lang}"]`);
+      if (btn) btn.classList.add("active");
+
+      // remember
+      try{ localStorage.setItem("leact_lang", lang); }catch(e){}
+    }
+
+    function initLang(){
+      let lang = "zh";
+      try{
+        const saved = localStorage.getItem("leact_lang");
+        if (saved === "zh" || saved === "sv") lang = saved;
+      }catch(e){}
+      setLang(lang);
+    }
+  </script>
 </head>
 
-<body>
+<body onload="initLang()">
+  <!-- Top Bar -->
+  <div class="topbarWrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brandText">LEACT</div>
+      </div>
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <img src="leact_logo_black.png" alt="LEACT">
-      <span>LEACT</span>
-    </div>
+      <nav aria-label="Primary">
+        <a href="#tools" data-key="tools"></a>
+        <a href="#consultant" data-key="consultant"></a>
+        <a href="#pricing" data-key="pricing"></a>
+      </nav>
 
-    <div class="nav">
-      <span data-key="tools"></span>
-      <span data-key="consultant"></span>
-      <span data-key="pricing"></span>
-    </div>
-
-    <div class="lang">
-      <button onclick="setLang('zh')">中文</button>
-      <button onclick="setLang('sv')">Svenska</button>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="grid">
-
-    <div class="card">
-      <div class="card-inner">
-        <div>
-          <h2 data-key="lead_title"></h2>
-          <p data-key="lead_desc"></p>
-          <ul>
-            <li data-key="lead_1"></li>
-            <li data-key="lead_2"></li>
-            <li data-key="lead_3"></li>
-          </ul>
+      <div class="right">
+        <div class="lang">
+          <button data-lang="zh" onclick="setLang('zh')">中文</button>
+          <button data-lang="sv" onclick="setLang('sv')">Svenska</button>
         </div>
-        <button class="cta" onclick="openForm()" data-key="monthly"></button>
+        <button class="ctaTop" onclick="openForm()" data-key="getStarted"></button>
       </div>
     </div>
+  </div>
 
-    <div class="card">
-      <div class="card-inner">
-        <div>
-          <h2 data-key="ops_title"></h2>
-          <p data-key="ops_desc"></p>
-          <ul>
-            <li data-key="ops_1"></li>
-            <li data-key="ops_2"></li>
-            <li data-key="ops_3"></li>
-          </ul>
+  <div class="container">
+    <div class="pageTitle" data-key="pageTitle"></div>
+
+    <!-- ✅ 6 Cards -->
+    <div class="grid" id="tools">
+      <!-- 1 -->
+      <div class="card">
+        <div class="cardInner">
+          <div>
+            <div class="cardHead">
+              <div class="icon">🎯</div>
+              <div>
+                <div class="h2" data-key="c1_title"></div>
+                <p class="sub" data-key="c1_desc"></p>
+              </div>
+            </div>
+            <ul class="list">
+              <li data-key="c1_1"></li>
+              <li data-key="c1_2"></li>
+              <li data-key="c1_3"></li>
+              <li data-key="c1_4"></li>
+            </ul>
+          </div>
+          <button class="cardBtn" onclick="openForm()" data-key="monthly"></button>
         </div>
-        <button class="cta" onclick="openForm()" data-key="monthly"></button>
+      </div>
+
+      <!-- 2 -->
+      <div class="card">
+        <div class="cardInner">
+          <div>
+            <div class="cardHead">
+              <div class="icon">⚙️</div>
+              <div>
+                <div class="h2" data-key="c2_title"></div>
+                <p class="sub" data-key="c2_desc"></p>
+              </div>
+            </div>
+            <ul class="list">
+              <li data-key="c2_1"></li>
+              <li data-key="c2_2"></li>
+              <li data-key="c2_3"></li>
+              <li data-key="c2_4"></li>
+            </ul>
+          </div>
+          <button class="cardBtn" onclick="openForm()" data-key="monthly"></button>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="card" id="consultant">
+        <div class="cardInner">
+          <div>
+            <div class="cardHead">
+              <div class="icon">💬</div>
+              <div>
+                <div class="h2" data-key="c3_title"></div>
+                <p class="sub" data-key="c3_desc"></p>
+              </div>
+            </div>
+            <ul class="list">
+              <li data-key="c3_1"></li>
+              <li data-key="c3_2"></li>
+              <li data-key="c3_3"></li>
+              <li data-key="c3_4"></li>
+            </ul>
+          </div>
+          <button class="cardBtn" onclick="openForm()" data-key="monthly"></button>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="card">
+        <div class="cardInner">
+          <div>
+            <div class="cardHead">
+              <div class="icon">📊</div>
+              <div>
+                <div class="h2" data-key="c4_title"></div>
+                <p class="sub" data-key="c4_desc"></p>
+              </div>
+            </div>
+            <ul class="list">
+              <li data-key="c4_1"></li>
+              <li data-key="c4_2"></li>
+              <li data-key="c4_3"></li>
+              <li data-key="c4_4"></li>
+            </ul>
+          </div>
+          <button class="cardBtn" onclick="openForm()" data-key="monthly"></button>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="card">
+        <div class="cardInner">
+          <div>
+            <div class="cardHead">
+              <div class="icon">🛡️</div>
+              <div>
+                <div class="h2" data-key="c5_title"></div>
+                <p class="sub" data-key="c5_desc"></p>
+              </div>
+            </div>
+            <ul class="list">
+              <li data-key="c5_1"></li>
+              <li data-key="c5_2"></li>
+              <li data-key="c5_3"></li>
+              <li data-key="c5_4"></li>
+            </ul>
+          </div>
+          <button class="cardBtn" onclick="openForm()" data-key="monthly"></button>
+        </div>
+      </div>
+
+      <!-- 6 AI -->
+      <div class="aiCard" id="pricing">
+        <div class="aiInner">
+          <div class="aiTitle">AI</div>
+          <p class="aiText" data-key="ai_text"></p>
+          <button class="aiBtn" onclick="openForm()" data-key="consultNow"></button>
+        </div>
       </div>
     </div>
-
-    <div class="ai">
-      <h1>AI</h1>
-      <p data-key="ai_desc"></p>
-      <button class="cta" onclick="openForm()" data-key="consult"></button>
-    </div>
-
   </div>
-</div>
-
-<script>
-const WEB_APP_URL="https://script.google.com/macros/s/AKfycbxvPYf3ySKsALiJ66UPZYUjtmd3RFDOEpL-_oHEtp0doMCFvxesdEaUUbmQIu4M7_Z3HA/exec";
-function openForm(){window.open(WEB_APP_URL,"_blank","width=600,height=800");}
-
-/* ==== i18n ==== */
-const i18n={
-  zh:{
-    tools:"TOOLS",
-    consultant:"CONSULTANT",
-    pricing:"PRICING",
-    lead_title:"Lead Intake & Routing",
-    lead_desc:"所有查詢集中一個入口，自動分類派發。",
-    lead_1:"集中所有查詢來源",
-    lead_2:"智能自動分類",
-    lead_3:"零漏單處理",
-    ops_title:"Internal Ops Automation",
-    ops_desc:"行政流程自動化，減少人手錯誤。",
-    ops_1:"流程標準化",
-    ops_2:"節省行政時間",
-    ops_3:"內部協作自動化",
-    ai_desc:"唔知邊款岩你？即刻同 AI 專家傾。",
-    monthly:"每月租用詳情",
-    consult:"即刻諮詢"
-  },
-  sv:{
-    tools:"VERKTYG",
-    consultant:"KONSULT",
-    pricing:"PRISER",
-    lead_title:"Lead Intake & Routing",
-    lead_desc:"Alla förfrågningar samlas och routas automatiskt.",
-    lead_1:"Central ingång",
-    lead_2:"Automatisk klassificering",
-    lead_3:"Ingen förlust av leads",
-    ops_title:"Intern Processautomation",
-    ops_desc:"Automatisera administration och minska manuella fel.",
-    ops_1:"Standardiserade processer",
-    ops_2:"Spara arbetstid",
-    ops_3:"Effektiv intern samverkan",
-    ai_desc:"Osäker på vilken lösning som passar? Prata med vår AI-expert.",
-    monthly:"Månadspris",
-    consult:"Kontakta oss"
-  }
-};
-
-function setLang(lang){
-  document.querySelectorAll("[data-key]").forEach(el=>{
-    el.innerText=i18n[lang][el.dataset.key];
-  });
-}
-setLang("zh");
-</script>
-
 </body>
 </html>
