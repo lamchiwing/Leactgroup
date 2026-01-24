@@ -1,147 +1,265 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leact</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LEACT</title>
 
-  <style>
-    body {
-      background: linear-gradient(-30deg, #ffdd3c 50%, #ffd400 50%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      font-family: "DIN", sans-serif;
-      margin: 0;
-    }
-    .logo {
-      width: auto;
-      height: 100px;
-      margin-bottom: 20px;
-    }
-    .business {
-      font-size: 12pt;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 0;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 0 12px;
-    }
-    .business div {
-      font-weight: bold;
-      padding: 6px 10px;
-      display: inline-block;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-fill-color: transparent;
-      border-right: 2px solid #F7EB39;
-      animation: gradientMove 3s infinite linear;
-      background-size: 200% 200%;
-      line-height: 1.2;
-      white-space: nowrap;
-    }
-    .business div:last-child {
-      border-right: none;
-    }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+<style>
+/* ==== brand ==== */
+:root{
+  --bg1:#FF17B6;
+  --bg2:#FF52B6;
+  --headline1:#F2B702;
+  --headline2:#DAE61A;
+  --text:#000;
+  --card:#F7DFF0;
+  --btn:#000;
+  --ai:#E0B536;
+  --radius:26px;
+  --shadow:0 18px 45px rgba(0,0,0,.25);
+}
 
-    /* service labels */
-    .data-analysis { background-image: linear-gradient(13deg, #FF17B6, #FF52B6); }
-    .predictive-analytics { background-image: linear-gradient(45deg, #FF17B6, #FF52B6); }
-    /* per briefing: Automation Architecture -> Automation Systems */
-    .automation-systems { background-image: linear-gradient(20deg, #FF17B6, #FF52B6); }
-    .social-listening { background-image: linear-gradient(30deg, #FF17B6, #FF52B6); }
-    /* per briefing: Strategy Development -> Growth Strategy */
-    .growth-strategy { background-image: linear-gradient(9deg, #FF17B6, #FF52B6); }
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:"DIN",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:linear-gradient(180deg,var(--bg2),var(--bg1));
+  color:var(--text);
+}
 
-    .info {
-      font-size: 12pt;
-      color: black;
-      margin-top: 50px;
-    }
-    .contact {
-      font-size: 14pt;
-      font-weight: bold;
-      color: black;
-      margin-top: 20px;
-      cursor: pointer;
-      display: inline-block;
-      padding: 10px 14px;
-      border: 2px solid black;
-      border-radius: 8px;
-      transition: background 0.3s, color 0.3s;
-      user-select: none;
-    }
-    .contact:hover {
-      background: black;
-      color: white;
-    }
+/* ==== top bar ==== */
+.topbar{
+  position:sticky; top:0; z-index:10;
+  backdrop-filter:blur(10px);
+  background:rgba(255,82,182,.7);
+  border-bottom:1px solid rgba(0,0,0,.1);
+}
+.topbar-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.brand img{height:34px;}
+.brand span{
+  font-weight:900;
+  font-size:18px;
+}
 
-    /* optional: small helper text under button */
-    .hint {
-      margin-top: 10px;
-      font-size: 10.5pt;
-      color: rgba(0,0,0,0.75);
-      max-width: 560px;
-      padding: 0 14px;
-    }
-  </style>
+.nav{
+  display:flex;
+  gap:24px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+.nav span{cursor:pointer;}
 
-  <script>
-    /**
-     * Revised: open your Apps Script Web App form (recommended)
-     * - Put the Web App URL into Render env and inject it at build time if you have a build step.
-     * - If you don't have build-time env injection, set WEB_APP_URL here (temporary).
-     *
-     * Option A (recommended): Use Render proxy URL (e.g. https://your-render-app.onrender.com/form)
-     * Option B: Use Apps Script Web App URL directly (https://script.google.com/macros/s/.../exec)
-     */
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxVPmvqZ8vZzLpVF9ZWx6lS7wTe1s-N_RU_S20BD-anAPu7FsS7x24FullFZrKQcWBABQ/exec"; // e.g. https://script.google.com/macros/s/XXXX/exec
+.lang{
+  display:flex;
+  gap:8px;
+}
+.lang button{
+  border:0;
+  background:#000;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:6px;
+  font-weight:800;
+  cursor:pointer;
+}
 
-    function openForm() {
-      if (!WEB_APP_URL || WEB_APP_URL.includes("REPLACE_WITH")) {
-        alert("Contact form is not configured yet. Please set WEB_APP_URL.");
-        return;
-      }
-      window.open(WEB_APP_URL, "_blank", "width=600,height=800");
-    }
-  </script>
+/* ==== layout ==== */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:28px 18px 80px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+}
+
+.card{
+  background:rgba(255,255,255,.35);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+}
+.card-inner{
+  background:rgba(255,255,255,.5);
+  border-radius:20px;
+  padding:22px;
+  min-height:320px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+h2{
+  margin:0 0 10px;
+  font-size:26px;
+  font-weight:950;
+  background:linear-gradient(180deg,var(--headline1),var(--headline2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+p{font-weight:700;}
+ul{padding-left:18px;font-weight:650;}
+button.cta{
+  margin-top:14px;
+  background:var(--btn);
+  color:#fff;
+  border:0;
+  padding:14px;
+  border-radius:14px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+/* AI card */
+.ai{
+  background:var(--ai);
+  border-radius:var(--radius);
+  padding:30px;
+  text-align:center;
+  outline:4px dashed #000;
+  outline-offset:-10px;
+}
+.ai h1{
+  font-size:52px;
+  margin:0 0 12px;
+}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr;}
+  .nav{display:none;}
+}
+</style>
 </head>
 
 <body>
-  <img src="Site_Black Logo.png" alt="Logo" class="logo" />
 
-  <div class="business">
-    <div class="data-analysis">Data Analysis</div>
-    <div class="predictive-analytics">Predictive Analytics</div>
-    <div class="automation-systems">Automation Systems</div>
-    <div class="social-listening">Social Listening</div>
-    <div class="growth-strategy">Growth Strategy</div>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="leact_logo_black.png" alt="LEACT">
+      <span>LEACT</span>
+    </div>
+
+    <div class="nav">
+      <span data-key="tools"></span>
+      <span data-key="consultant"></span>
+      <span data-key="pricing"></span>
+    </div>
+
+    <div class="lang">
+      <button onclick="setLang('zh')">中文</button>
+      <button onclick="setLang('sv')">Svenska</button>
+    </div>
   </div>
+</div>
 
-  <div class="info">Hong Kong | Sweden</div>
+<div class="container">
+  <div class="grid">
 
-<div class="contact" onclick="openForm()">📞 Contact Us</div>
+    <div class="card">
+      <div class="card-inner">
+        <div>
+          <h2 data-key="lead_title"></h2>
+          <p data-key="lead_desc"></p>
+          <ul>
+            <li data-key="lead_1"></li>
+            <li data-key="lead_2"></li>
+            <li data-key="lead_3"></li>
+          </ul>
+        </div>
+        <button class="cta" onclick="openForm()" data-key="monthly"></button>
+      </div>
+    </div>
 
-<div class="hint">
-  (Demo) Your submission will trigger automated routing and notifications.
+    <div class="card">
+      <div class="card-inner">
+        <div>
+          <h2 data-key="ops_title"></h2>
+          <p data-key="ops_desc"></p>
+          <ul>
+            <li data-key="ops_1"></li>
+            <li data-key="ops_2"></li>
+            <li data-key="ops_3"></li>
+          </ul>
+        </div>
+        <button class="cta" onclick="openForm()" data-key="monthly"></button>
+      </div>
+    </div>
+
+    <div class="ai">
+      <h1>AI</h1>
+      <p data-key="ai_desc"></p>
+      <button class="cta" onclick="openForm()" data-key="consult"></button>
+    </div>
+
+  </div>
 </div>
 
 <script>
-  function openForm() {
-    const url =
-      "https://script.google.com/macros/s/AKfycbz9lcfyFyQjEnwC3QmmtLQJduRmJ46-WtUwH3Zo_VJnilVxuH_y9nsF0Vc28Y_zlPRjcA/exec";
-    window.open(url, "_blank", "noopener,noreferrer,width=600,height=800");
+const WEB_APP_URL="https://script.google.com/macros/s/AKfycbxvPYf3ySKsALiJ66UPZYUjtmd3RFDOEpL-_oHEtp0doMCFvxesdEaUUbmQIu4M7_Z3HA/exec";
+function openForm(){window.open(WEB_APP_URL,"_blank","width=600,height=800");}
+
+/* ==== i18n ==== */
+const i18n={
+  zh:{
+    tools:"TOOLS",
+    consultant:"CONSULTANT",
+    pricing:"PRICING",
+    lead_title:"Lead Intake & Routing",
+    lead_desc:"所有查詢集中一個入口，自動分類派發。",
+    lead_1:"集中所有查詢來源",
+    lead_2:"智能自動分類",
+    lead_3:"零漏單處理",
+    ops_title:"Internal Ops Automation",
+    ops_desc:"行政流程自動化，減少人手錯誤。",
+    ops_1:"流程標準化",
+    ops_2:"節省行政時間",
+    ops_3:"內部協作自動化",
+    ai_desc:"唔知邊款岩你？即刻同 AI 專家傾。",
+    monthly:"每月租用詳情",
+    consult:"即刻諮詢"
+  },
+  sv:{
+    tools:"VERKTYG",
+    consultant:"KONSULT",
+    pricing:"PRISER",
+    lead_title:"Lead Intake & Routing",
+    lead_desc:"Alla förfrågningar samlas och routas automatiskt.",
+    lead_1:"Central ingång",
+    lead_2:"Automatisk klassificering",
+    lead_3:"Ingen förlust av leads",
+    ops_title:"Intern Processautomation",
+    ops_desc:"Automatisera administration och minska manuella fel.",
+    ops_1:"Standardiserade processer",
+    ops_2:"Spara arbetstid",
+    ops_3:"Effektiv intern samverkan",
+    ai_desc:"Osäker på vilken lösning som passar? Prata med vår AI-expert.",
+    monthly:"Månadspris",
+    consult:"Kontakta oss"
   }
+};
+
+function setLang(lang){
+  document.querySelectorAll("[data-key]").forEach(el=>{
+    el.innerText=i18n[lang][el.dataset.key];
+  });
+}
+setLang("zh");
 </script>
+
+</body>
+</html>
