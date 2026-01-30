@@ -2,9 +2,7 @@
   // ===== CONFIG =====
   // Your Apps Script Web App URL (exec)
   const WEB_APP_BASE =
-    "https://script.google.com/macros/s/AKfycbyWS6wzqlzQNtVyH__1EY-yzFF0mvmO8ztXejHqwMIEDoWr1lgzbKHzpFAfNFyAeOYzdg/exec?t=leactrent";
-
-  // Default tenant: from meta tag <meta name="leact-tenant-default" content="leactrent">
+    "https://script.google.com/macros/s/AKfycbxSCJiSDWfgZLYfFkasG3YgQpPOI3p3QkDqcQ9q_oL4bbv_bFDbtBetW35C8Zs5XliThQ/exec?t=leactrent";
   function getDefaultTenant() {
     const meta = document.querySelector('meta[name="leact-tenant-default"]');
     return meta ? String(meta.getAttribute("content") || "").trim() : "";
